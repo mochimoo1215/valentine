@@ -12,59 +12,79 @@
             color: #d63384;
             padding: 50px;
         }
-        h1 {
-            font-size: 3rem;
+        .container {
+            display: none;
         }
-        .heart {
-            font-size: 5rem;
-            color: red;
+        .active {
+            display: block;
         }
-        .button-container {
-            margin-top: 30px;
-        }
-        .btn {
+        .button {
             padding: 15px 30px;
             font-size: 1.5rem;
             border: none;
             border-radius: 10px;
             cursor: pointer;
             margin: 10px;
-        }
-        .yes {
             background-color: #ff4081;
             color: white;
         }
-        .no {
-            background-color: #b0bec5;
-            color: black;
+        #no-container {
+            position: relative;
         }
-        .no:hover {
+        .yes-btn {
             position: absolute;
-            left: calc(10% + (80% * Math.random()));
-            top: calc(10% + (80% * Math.random()));
         }
     </style>
 </head>
 <body>
+    <div id="page1" class="container active">
+        <div class="tenor-gif-embed" data-postid="5914952369915137641" data-share-method="host" data-aspect-ratio="1" data-width="100%"></div>
+        <script async src="https://tenor.com/embed.js"></script>
+        <h2>Hi baby hehe</h2>
+        <button class="button" onclick="showPage(2)">?????</button>
+    </div>
 
-    <h1>Will You Be My Valentine? ❤️</h1>
-    <div class="heart">💖💞</div>
-    
-    <div class="button-container">
-        <button class="btn yes" onclick="yesResponse()">Yes!</button>
-        <button class="btn no" id="noButton">No</button>
+    <div id="page2" class="container">
+        <h2>There's something I've been meaning to ask you.</h2>
+        <div class="tenor-gif-embed" data-postid="13596514" data-share-method="host" data-aspect-ratio="1.13333" data-width="100%"></div>
+        <script async src="https://tenor.com/embed.js"></script>
+        <button class="button" onclick="showPage(3)">Okayyy, ano to????</button>
+    </div>
+
+    <div id="page3" class="container">
+        <h2>Baby, will you be my valentine? hehe</h2>
+        <div class="tenor-gif-embed" data-postid="18564847" data-share-method="host" data-aspect-ratio="1" data-width="100%"></div>
+        <script async src="https://tenor.com/embed.js"></script>
+        <button class="button" onclick="showPage(4)">Yes</button>
+        <button class="button" id="no-button" onclick="noClicked()">No</button>
+        <div id="no-container"></div>
+    </div>
+
+    <div id="page4" class="container">
+        <h2>YESSSSS!!!! hehe thank you for being my valentine baby I love you</h2>
+        <div class="tenor-gif-embed" data-postid="10492517158609762937" data-share-method="host" data-aspect-ratio="1.18519" data-width="100%"></div>
+        <div class="tenor-gif-embed" data-postid="24546038" data-share-method="host" data-aspect-ratio="0.753125" data-width="100%"></div>
+        <div class="tenor-gif-embed" data-postid="14678346" data-share-method="host" data-aspect-ratio="1" data-width="100%"></div>
+        <script async src="https://tenor.com/embed.js"></script>
     </div>
 
     <script>
-        function yesResponse() {
-            alert("Yay! You made me the happiest person! ❤️🥰");
+        function showPage(pageNum) {
+            document.querySelectorAll('.container').forEach(page => page.classList.remove('active'));
+            document.getElementById(`page${pageNum}`).classList.add('active');
         }
-
-        document.getElementById("noButton").addEventListener("mouseover", function() {
-            this.style.left = Math.random() * window.innerWidth + "px";
-            this.style.top = Math.random() * window.innerHeight + "px";
-        });
+        
+        function noClicked() {
+            let noButton = document.getElementById("no-button");
+            let noContainer = document.getElementById("no-container");
+            let yesButton = document.createElement("button");
+            yesButton.classList.add("button", "yes-btn");
+            yesButton.innerText = "Yes";
+            yesButton.style.left = Math.random() * 300 + "px";
+            yesButton.style.top = Math.random() * 300 + "px";
+            yesButton.onclick = function() { showPage(4); };
+            noContainer.appendChild(yesButton);
+        }
     </script>
-
 </body>
 </html>
