@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffebf3;
+            color: #d63384;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 3rem;
+        }
+        .heart {
+            font-size: 5rem;
+            color: red;
+        }
+        .button-container {
+            margin-top: 30px;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .yes {
+            background-color: #ff4081;
+            color: white;
+        }
+        .no {
+            background-color: #b0bec5;
+            color: black;
+        }
+        .no:hover {
+            position: absolute;
+            left: calc(10% + (80% * Math.random()));
+            top: calc(10% + (80% * Math.random()));
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Will You Be My Valentine? ❤️</h1>
+    <div class="heart">💖💞</div>
+    
+    <div class="button-container">
+        <button class="btn yes" onclick="yesResponse()">Yes!</button>
+        <button class="btn no" id="noButton">No</button>
+    </div>
+
+    <script>
+        function yesResponse() {
+            alert("Yay! You made me the happiest person! ❤️🥰");
+        }
+
+        document.getElementById("noButton").addEventListener("mouseover", function() {
+            this.style.left = Math.random() * window.innerWidth + "px";
+            this.style.top = Math.random() * window.innerHeight + "px";
+        });
+    </script>
+
+</body>
+</html>
