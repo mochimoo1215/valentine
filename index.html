@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Be My Valentine?</title>
-    <link href="https://fonts.googleapis.com/css2?family=Gorditas:wght@400;700&family=Schoolbell&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Gorditas:wght@400;700&family=Schoolbell:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            background-color: #ffebf3;
-            color: #d63384;
+            background-color: #dff6ff;
+            color: #3a506b;
             padding: 50px;
+            position: relative;
         }
         h2 {
             font-family: 'Gorditas', cursive;
+            color: #5a5f7b;
         }
         .container {
             display: none;
@@ -29,19 +31,15 @@
             border-radius: 10px;
             cursor: pointer;
             margin: 10px;
-            background-color: #ff4081;
-            color: white;
+            background-color: #a0d8ef;
+            color: #5a5f7b;
             font-family: 'Schoolbell', cursive;
-        }
-        #no-container {
-            position: relative;
-        }
-        .yes-btn {
-            position: absolute;
+            font-weight: bold;
         }
         .tenor-gif-embed {
-            width: 200px !important;
-            height: 200px !important;
+            width: 300px !important;
+            height: 300px !important;
+            object-fit: contain;
             margin: auto;
         }
         .gif-container {
@@ -51,11 +49,29 @@
             gap: 20px;
             flex-wrap: nowrap;
         }
+        .yes-btn {
+            position: absolute;
+            font-weight: bold;
+        }
+        .spotify-container {
+            margin: 20px auto;
+            width: 300px;
+        }
     </style>
 </head>
 <body>
+    <div class="spotify-container">
+        <iframe style="border-radius:12px" 
+            src="https://open.spotify.com/embed/track/6UX55FQuFq4q8jtIijZDRv?utm_source=generator" 
+            width="100%" height="80" 
+            frameBorder="0" 
+            allowfullscreen="" 
+            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+        </iframe>
+    </div>
+
     <div id="page1" class="container active">
-        <div class="tenor-gif-embed" data-postid="5914952369915137641" data-share-method="host" data-aspect-ratio="1" data-width="100%"></div>
+        <div class="tenor-gif-embed" data-postid="5914952369915137641" data-share-method="host"></div>
         <script async src="https://tenor.com/embed.js"></script>
         <h2>Hi baby hehe</h2>
         <button class="button" onclick="showPage(2)">?????</button>
@@ -63,16 +79,16 @@
 
     <div id="page2" class="container">
         <h2>There's something I've been meaning to ask you.</h2>
-        <div class="tenor-gif-embed" data-postid="13596514" data-share-method="host" data-aspect-ratio="1.13333" data-width="100%"></div>
+        <div class="tenor-gif-embed" data-postid="13596514" data-share-method="host"></div>
         <script async src="https://tenor.com/embed.js"></script>
         <button class="button" onclick="showPage(3)">Okayyy, ano to????</button>
     </div>
 
     <div id="page3" class="container">
         <h2>Baby, will you be my valentine? hehe</h2>
-        <div class="tenor-gif-embed" data-postid="18564847" data-share-method="host" data-aspect-ratio="1" data-width="100%"></div>
+        <div class="tenor-gif-embed" data-postid="18564847" data-share-method="host"></div>
         <script async src="https://tenor.com/embed.js"></script>
-        <button class="button" onclick="showPage(4)">Yes</button>
+        <button class="button" onclick="removeAllYesButtons(); showPage(4);">Yes</button>
         <button class="button" id="no-button" onclick="noClicked()">No</button>
         <div id="no-container"></div>
     </div>
@@ -80,9 +96,9 @@
     <div id="page4" class="container">
         <h2>YESSSSS!!!! hehe thank you for being my valentine baby I love you</h2>
         <div class="gif-container">
-            <div class="tenor-gif-embed" data-postid="10492517158609762937" data-share-method="host" data-aspect-ratio="1.18519" data-width="200px"></div>
-            <div class="tenor-gif-embed" data-postid="24546038" data-share-method="host" data-aspect-ratio="0.753125" data-width="200px"></div>
-            <div class="tenor-gif-embed" data-postid="14678346" data-share-method="host" data-aspect-ratio="1" data-width="200px"></div>
+            <div class="tenor-gif-embed" data-postid="10492517158609762937" data-share-method="host"></div>
+            <div class="tenor-gif-embed" data-postid="24546038" data-share-method="host"></div>
+            <div class="tenor-gif-embed" data-postid="14678346" data-share-method="host"></div>
         </div>
         <script async src="https://tenor.com/embed.js"></script>
     </div>
@@ -94,15 +110,20 @@
         }
         
         function noClicked() {
-            let noButton = document.getElementById("no-button");
-            let noContainer = document.getElementById("no-container");
+            let yesButtons = document.querySelectorAll(".yes-btn");
+            if (yesButtons.length > 50) return;
+            
             let yesButton = document.createElement("button");
             yesButton.classList.add("button", "yes-btn");
             yesButton.innerText = "Yes";
-            yesButton.style.left = Math.random() * 300 + "px";
-            yesButton.style.top = Math.random() * 300 + "px";
-            yesButton.onclick = function() { showPage(4); };
-            noContainer.appendChild(yesButton);
+            yesButton.style.left = Math.random() * (window.innerWidth - 100) + "px";
+            yesButton.style.top = Math.random() * (window.innerHeight - 50) + "px";
+            yesButton.onclick = function() { removeAllYesButtons(); showPage(4); };
+            document.body.appendChild(yesButton);
+        }
+        
+        function removeAllYesButtons() {
+            document.querySelectorAll(".yes-btn").forEach(button => button.remove());
         }
     </script>
 </body>
